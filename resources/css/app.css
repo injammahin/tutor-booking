@@ -713,7 +713,7 @@ h3,
 .process-row h3,
 .testimonial-section h2,
 .testimonial-slide h3 {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .stat-card,
@@ -1043,7 +1043,7 @@ h3,
 .about-page strong,
 .about-page .section-title,
 .about-page .page-title {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .about-page .about-photo-card,
@@ -1341,7 +1341,7 @@ h3,
 .package-page strong,
 .package-page .section-title,
 .package-page .page-title {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .package-page .pricing-card,
@@ -1413,15 +1413,15 @@ h3,
     font-size: 30px;
     line-height: 1.2;
     color: #0B1220;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .package-page .pricing-label {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .package-page .price {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .package-page .pricing-list li {
@@ -1460,7 +1460,7 @@ h3,
 .package-subject-body h3 {
     color: #0B1220;
     font-size: 24px;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .package-subject-body p {
@@ -1503,7 +1503,7 @@ h3,
 .package-guide-row h3 {
     color: #0B1220;
     font-size: 20px;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .package-guide-row p {
@@ -1549,7 +1549,7 @@ h3,
     color: #0B1220;
     font-size: 26px;
     line-height: 1.25;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .package-table-card {
@@ -1572,7 +1572,7 @@ h3,
 }
 
 .package-table th {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .package-table td {
@@ -1611,7 +1611,7 @@ h3,
     margin-top: 22px;
     color: #0B1220;
     font-size: 24px;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .package-step-card p {
@@ -1648,7 +1648,7 @@ h3,
 .book-page h3,
 .book-page strong,
 .book-page .section-label {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .book-page-title {
@@ -2098,7 +2098,7 @@ h3,
 .faq-page strong,
 .faq-page .section-label,
 .faq-page .faq-question {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .faq-page .faq-side-card,
@@ -2446,7 +2446,7 @@ h3,
 .contact-page strong,
 .contact-page .section-label,
 .contact-page .form-label {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .contact-page .contact-photo-card,
@@ -2751,7 +2751,7 @@ h3,
 .dark-header-link {
     color: #ffffff !important;
     font-size: 18px;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .dark-header-link::after {
@@ -2767,7 +2767,7 @@ h3,
     border-radius: 7px !important;
     background: #5B1B8B !important;
     color: #ffffff !important;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .dark-header-book-btn:hover {
@@ -2777,7 +2777,7 @@ h3,
 .dark-mobile-link {
     color: #ffffff !important;
     font-size: 15px;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
     border-radius: 7px !important;
 }
 
@@ -2802,7 +2802,7 @@ h3,
 .service-page h3,
 .service-page strong,
 .service-page .section-label {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .service-page .service-card,
@@ -2852,7 +2852,7 @@ h3,
     color: #0B1220;
     font-size: clamp(32px, 4vw, 48px);
     line-height: 1.05;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
     letter-spacing: -0.04em;
 }
 
@@ -3156,7 +3156,7 @@ h3,
 .service-page h3,
 .service-page strong,
 .service-page .section-label {
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .service-page .service-card,
