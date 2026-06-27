@@ -191,8 +191,8 @@
             </div>
 
             <div class="image-stack-card">
-                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=85"
-                    alt="Teacher helping students" class="h-[560px] w-full rounded-[10px] object-cover">
+                <img src="/image/intor.jpeg" alt="Teacher helping students"
+                    class="h-[700px] w-[600px] rounded-[10px] object-cover">
 
                 <div class="image-stack-note">
                     <p class="text-sm font-bold uppercase tracking-[0.18em] text-monty-purple">Parent Friendly</p>

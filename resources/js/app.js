@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initBookingCalendar();
     initPaypalCheckout();
     initTestimonialSlider();
+    initServiceVideoModal();
 });
 
 function initHeader() {
@@ -95,6 +96,27 @@ function initBookingCalendar() {
     const nextBtn = document.getElementById('nextWeekBtn');
     const filterButtons = document.querySelectorAll('.filter-chip');
 
+    const modal = document.getElementById('bookingRequestModal');
+    const modalClose = document.getElementById('bookingRequestClose');
+    const modalOverlay = modal?.querySelector('.booking-request-overlay');
+    const bookingForm = document.getElementById('bookingRequestForm');
+    const successBox = document.getElementById('bookingSuccessBox');
+
+    const modalTitle = document.getElementById('bookingModalTitle');
+    const modalSubject = document.getElementById('bookingModalSubject');
+    const modalMode = document.getElementById('bookingModalMode');
+    const modalDate = document.getElementById('bookingModalDate');
+    const modalTime = document.getElementById('bookingModalTime');
+    const modalDuration = document.getElementById('bookingModalDuration');
+    const modalPrice = document.getElementById('bookingModalPrice');
+    const modalSpots = document.getElementById('bookingModalSpots');
+
+    const hiddenTitle = document.getElementById('bookingSelectedTitle');
+    const hiddenSubject = document.getElementById('bookingSelectedSubject');
+    const hiddenDate = document.getElementById('bookingSelectedDate');
+    const hiddenTime = document.getElementById('bookingSelectedTime');
+    const hiddenPrice = document.getElementById('bookingSelectedPrice');
+
     if (!calendarGrid || !mobileSlotList || !rangeEl) {
         return;
     }
@@ -110,7 +132,6 @@ function initBookingCalendar() {
             subject: 'Math',
             duration: '1 hr',
             price: '$50',
-            amount: '50.00',
             spots: '5 spots left',
             mode: 'Small Group',
         },
@@ -121,7 +142,6 @@ function initBookingCalendar() {
             subject: 'Reading',
             duration: '1 hr',
             price: '$50',
-            amount: '50.00',
             spots: '4 spots left',
             mode: 'Small Group',
         },
@@ -132,7 +152,6 @@ function initBookingCalendar() {
             subject: 'Math',
             duration: '45 min',
             price: '$65',
-            amount: '65.00',
             spots: '1 spot left',
             mode: 'Private',
         },
@@ -143,7 +162,6 @@ function initBookingCalendar() {
             subject: 'Math',
             duration: '1 hr',
             price: '$50',
-            amount: '50.00',
             spots: '5 spots left',
             mode: 'Camp',
         },
@@ -154,7 +172,6 @@ function initBookingCalendar() {
             subject: 'Writing',
             duration: '1 hr',
             price: '$50',
-            amount: '50.00',
             spots: '3 spots left',
             mode: 'Small Group',
         },
@@ -165,7 +182,6 @@ function initBookingCalendar() {
             subject: 'Reading',
             duration: '45 min',
             price: '$65',
-            amount: '65.00',
             spots: '1 spot left',
             mode: 'Private',
         },
@@ -176,7 +192,6 @@ function initBookingCalendar() {
             subject: 'Math',
             duration: '1 hr',
             price: '$50',
-            amount: '50.00',
             spots: '5 spots left',
             mode: 'Small Group',
         },
@@ -187,7 +202,6 @@ function initBookingCalendar() {
             subject: 'Math',
             duration: '1 hr',
             price: '$50',
-            amount: '50.00',
             spots: '5 spots left',
             mode: 'Camp',
         },
@@ -198,7 +212,6 @@ function initBookingCalendar() {
             subject: 'Writing',
             duration: '45 min',
             price: '$65',
-            amount: '65.00',
             spots: '1 spot left',
             mode: 'Private',
         },
@@ -209,7 +222,6 @@ function initBookingCalendar() {
             subject: 'Math',
             duration: '1 hr',
             price: '$50',
-            amount: '50.00',
             spots: '5 spots left',
             mode: 'Small Group',
         },
@@ -220,7 +232,6 @@ function initBookingCalendar() {
             subject: 'Reading',
             duration: '1 hr',
             price: '$50',
-            amount: '50.00',
             spots: '5 spots left',
             mode: 'Small Group',
         },
@@ -231,7 +242,6 @@ function initBookingCalendar() {
             subject: 'Test Prep',
             duration: '45 min',
             price: '$65',
-            amount: '65.00',
             spots: '1 spot left',
             mode: 'Private',
         },
@@ -242,7 +252,6 @@ function initBookingCalendar() {
             subject: 'Test Prep',
             duration: '1 hr',
             price: '$75',
-            amount: '75.00',
             spots: '2 spots left',
             mode: 'Premium',
         },
@@ -330,30 +339,75 @@ function initBookingCalendar() {
         const button = card.querySelector('button');
 
         button.addEventListener('click', () => {
-            const checkoutUrl = new URL(
-                window.MontyBookingCheckoutUrl || '/booking-checkout',
-                window.location.origin
-            );
-
-            checkoutUrl.searchParams.set('title', slot.title);
-            checkoutUrl.searchParams.set('subject', slot.subject);
-            checkoutUrl.searchParams.set('mode', slot.mode);
-            checkoutUrl.searchParams.set('date', date.toLocaleDateString('en-US', {
-                weekday: 'long',
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-            }));
-            checkoutUrl.searchParams.set('time', slot.time);
-            checkoutUrl.searchParams.set('duration', slot.duration);
-            checkoutUrl.searchParams.set('spots', slot.spots);
-            checkoutUrl.searchParams.set('amount', slot.amount);
-
-            window.location.href = checkoutUrl.toString();
+            openBookingModal(slot, date);
         });
 
         return card;
     }
+
+    function openBookingModal(slot, date) {
+        const formattedDate = date.toLocaleDateString('en-US', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+        });
+
+        if (modalTitle) modalTitle.textContent = slot.title;
+        if (modalSubject) modalSubject.textContent = slot.subject;
+        if (modalMode) modalMode.textContent = slot.mode;
+        if (modalDate) modalDate.textContent = formattedDate;
+        if (modalTime) modalTime.textContent = slot.time;
+        if (modalDuration) modalDuration.textContent = slot.duration;
+        if (modalPrice) modalPrice.textContent = slot.price;
+        if (modalSpots) modalSpots.textContent = slot.spots;
+
+        if (hiddenTitle) hiddenTitle.value = slot.title;
+        if (hiddenSubject) hiddenSubject.value = slot.subject;
+        if (hiddenDate) hiddenDate.value = formattedDate;
+        if (hiddenTime) hiddenTime.value = slot.time;
+        if (hiddenPrice) hiddenPrice.value = slot.price;
+
+        successBox?.classList.add('hidden');
+        bookingForm?.reset();
+
+        modal?.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeBookingModal() {
+        modal?.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    modalClose?.addEventListener('click', closeBookingModal);
+    modalOverlay?.addEventListener('click', closeBookingModal);
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+            closeBookingModal();
+        }
+    });
+
+    bookingForm?.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (!bookingForm.checkValidity()) {
+            bookingForm.reportValidity();
+            return;
+        }
+
+        successBox?.classList.remove('hidden');
+
+        successBox?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+
+        setTimeout(() => {
+            closeBookingModal();
+        }, 1800);
+    });
 
     prevBtn?.addEventListener('click', () => {
         weekStart.setDate(weekStart.getDate() - 7);
@@ -636,5 +690,72 @@ function formatShortDate(date) {
     return date.toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
+    });
+}
+function initServiceVideoModal() {
+    const modal = document.getElementById('serviceVideoModal');
+    const modalContent = document.getElementById('serviceVideoContent');
+    const modalClose = document.getElementById('serviceVideoClose');
+    const modalOverlay = modal?.querySelector('.service-video-overlay');
+    const videoButtons = document.querySelectorAll('.service-video-btn');
+
+    if (!modal || !modalContent || videoButtons.length === 0) {
+        return;
+    }
+
+    videoButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const videoUrl = button.dataset.videoUrl || '';
+            const videoWidth = button.dataset.videoWidth || '417';
+            const videoHeight = button.dataset.videoHeight || '476';
+
+            if (!videoUrl) {
+                return;
+            }
+
+            modalContent.innerHTML = '';
+
+            const autoplayUrl = new URL(videoUrl);
+
+            autoplayUrl.searchParams.set('autoplay', '1');
+            autoplayUrl.searchParams.set('mute', '1');
+            autoplayUrl.searchParams.set('t', '0');
+
+            const iframe = document.createElement('iframe');
+
+            iframe.src = autoplayUrl.toString();
+            iframe.width = videoWidth;
+            iframe.height = videoHeight;
+            iframe.style.border = 'none';
+            iframe.style.overflow = 'hidden';
+            iframe.setAttribute('scrolling', 'no');
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allowfullscreen', 'true');
+            iframe.setAttribute('allowFullScreen', 'true');
+            iframe.setAttribute(
+                'allow',
+                'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'
+            );
+
+            modalContent.appendChild(iframe);
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    const closeModal = () => {
+        modal.classList.add('hidden');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = '';
+    };
+
+    modalClose?.addEventListener('click', closeModal);
+    modalOverlay?.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+            closeModal();
+        }
     });
 }
