@@ -72,7 +72,7 @@ h3,
     }
 
     .page-title {
-        @apply mt-4 max-w-4xl text-5xl font-black leading-tight tracking-tight text-monty-black sm:text-6xl;
+        @apply mt-4 max-w-4xl text-4xl font-black leading-tight tracking-tight text-monty-black sm:text-5xl;
     }
 
     .page-text {
